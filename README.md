@@ -1,18 +1,18 @@
-# 🏥 Multilingual Telehealth Voice-to-Text System
+# 🏥 Multi-Lingual-Voice-to-text-model-for-rural-users-of-Telehealth
 
 ---
 
 ## 📌 Overview
 
-This project provides a **complete speech-to-text and translation system for Indian languages** designed for rural telehealth applications.
+This project presents a **multilingual speech-to-text and translation system** designed specifically for rural telehealth applications.
 
-It enables users to:
+The system enables users to:
 
-* 🎤 Speak in native language
-* 📝 Get transcription
-* 🌍 Get English translation
+* 🎤 Speak in their native language
+* 📝 Receive accurate transcription
+* 🌍 Obtain English translation
 
-Supported Languages:
+### 🌐 Supported Languages
 
 * Kannada
 * Hindi
@@ -24,45 +24,45 @@ Supported Languages:
 
 ## 🧠 System Architecture
 
-```
+```id="pzt69x"
 Android App → FastAPI Backend → Hugging Face Models → Output
 ```
 
-### Components:
+### 🔧 Components
 
-* 📱 **Android App**
+* 📱 **Android Application**
 
   * Records or uploads audio
-  * Sends request to backend
+  * Sends audio data to backend server
 
 * ⚙️ **Backend (FastAPI)**
 
   * Handles API requests
-  * Processes audio
-  * Calls ML models
+  * Processes audio input
+  * Integrates ML models for inference
 
-* 🤖 **Models (Hugging Face)**
+* 🤖 **Machine Learning Models (Hugging Face)**
 
   * ASR (Speech-to-Text)
-  * Translation (Indian → English)
+  * Translation (Indian Languages → English)
 
 ---
 
 ## 🤖 Models (Hosted on Hugging Face)
 
-All models are hosted and loaded dynamically:
+The models are hosted on Hugging Face and loaded dynamically at runtime:
 
-* 🔤 Translation Model (IndicTrans2)
+* 🔤 **Translation Model (IndicTrans2)**
   https://huggingface.co/vragipin/translation-model
 
-* 🎤 Transcription Model (IndicConformer)
+* 🎤 **Transcription Model (IndicConformer)**
   https://huggingface.co/vragipin/transcription-model
 
-* 🧠 Whisper Kannada ONNX Model
+* 🧠 **Whisper Kannada ONNX Model**
   https://huggingface.co/vragipin/whisper-kannada-onnx-model
 
-> ⚠️ First run will automatically download ~13GB of models
-> After that → models are cached locally (no re-download)
+> ⚠️ During the first execution, approximately **13GB of model data** will be downloaded automatically.
+> Afterward, models are cached locally and reused.
 
 ---
 
@@ -70,9 +70,9 @@ All models are hosted and loaded dynamically:
 
 ---
 
-## 1️⃣ Clone Repository
+## 1️⃣ Clone the Repository
 
-```bash
+```bash id="tweyf3"
 git clone https://github.com/vragipin/Multi-Lingual-Voice-to-text-model-for-rural-users-of-Telehealth
 cd telehealth_backend
 ```
@@ -81,15 +81,13 @@ cd telehealth_backend
 
 ## 2️⃣ Create Virtual Environment
 
-```bash
+```bash id="nqruzy"
 python -m venv venv
 ```
 
-Activate:
+### Activate Environment (Windows)
 
-### Windows:
-
-```bash
+```bash id="21840i"
 venv\scripts\activate
 ```
 
@@ -97,7 +95,7 @@ venv\scripts\activate
 
 ## 3️⃣ Install Dependencies
 
-```bash
+```bash id="86is02"
 pip install -r requirements.txt
 ```
 
@@ -105,7 +103,7 @@ pip install -r requirements.txt
 
 ## 4️⃣ Run Backend Server
 
-```bash
+```bash id="yzq55z"
 python main.py
 ```
 
@@ -113,23 +111,17 @@ python main.py
 
 ## 5️⃣ Backend Running Location
 
-Once started, backend runs at:
-
-```
+```id="wz8sqi"
 http://127.0.0.1:8000
 ```
 
 ---
 
-## 6️⃣ Swagger UI (Testing API)
+## 6️⃣ Swagger UI (API Testing)
 
-Open in browser:
-
-```
+```id="58hw0r"
 http://127.0.0.1:8000/docs
 ```
-
-👉 You can upload audio and test API directly
 
 ---
 
@@ -139,7 +131,7 @@ http://127.0.0.1:8000/docs
 
 ## 7️⃣ Start Ngrok
 
-```bash
+```bash id="3b0xyw"
 ngrok http 8000 --domain=sacramentally-humeral-shantelle.ngrok-free.dev
 ```
 
@@ -147,55 +139,38 @@ ngrok http 8000 --domain=sacramentally-humeral-shantelle.ngrok-free.dev
 
 ## 8️⃣ Public Backend URL
 
-```
+```id="t790g9"
 https://sacramentally-humeral-shantelle.ngrok-free.dev
 ```
 
-👉 This is used by Android app
-
 ---
 
-# 📱 Android App Usage
+# 📱 Android Application Usage
 
 ---
 
 ## 🔽 Install APK
 
-Download from this repository:
-
-```
+```id="yq5eed"
 app.apk
 ```
-
-Install it on your Android device.
 
 ---
 
 ## 📲 Steps to Use
 
-1. Open the app
+1. Open the application
+2. Select preferred language
+3. Choose model:
 
-2. Select language:
-
-   * Kannada / Hindi / Telugu / Tamil / Malayalam
-
-3. Select model:
-
-   * **Indic** → supports all languages
-   * **Whisper** → supports Kannada only
-
-4. Choose input method:
-
-   * 🎤 Record audio
-   * 📂 Upload audio file
-
-5. Click **Upload / Transcribe**
+   * **Indic Model** → Supports all languages
+   * **Whisper Model** → Supports Kannada only
+4. Record or upload audio
+5. Click **Transcribe**
 
 ---
 
 ## ✅ Output
-
-The app will display:
 
 * 📝 Native language transcription
 * 🌍 English translation
@@ -204,19 +179,10 @@ The app will display:
 
 # ⚠️ Important Notes
 
-* First run:
-
-  * Downloads ~13GB models
-  * Takes 10–20 minutes
-
-* After first run:
-
-  * Works offline
-  * Faster execution
-
-* Backend must be running before using app
-
-* Ngrok must be active for mobile access
+* First run downloads ~13GB models
+* Takes 10–20 minutes
+* Works offline after first run
+* Backend + ngrok must be running
 
 ---
 
@@ -224,33 +190,28 @@ The app will display:
 
 * Multilingual speech recognition
 * Real-time translation
-* Hugging Face model integration
-* ONNX optimized Whisper model
+* Hugging Face integration
+* ONNX optimized inference
 * Android + Backend integration
-* Works offline after initial setup
 
 ---
 
-# 🧪 Testing Flow
+# 🧪 Testing Workflow
 
 1. Run backend
 2. Start ngrok
-3. Open Swagger → test API
-4. Open Android app
-5. Record speech
-6. Get results
+3. Open Swagger UI
+4. Use Android app
+5. Get results
 
+---
 
-# 👨‍💻 Author
+# 👨‍💻 Authors
 
-**Vishnuvardhan Reddy**
-**Bharath Kumar**
-**Varshith**
-**Masineni Kowshik**
-Final Year Project – Multilingual Telehealth AI System
-
-Under the guidance of :-
-**Dr. Viswa Bharathy A. M 
-Assistant Professor**
+* **Dr. Viswa Bharathy A. M (Project Guide)**
+* **Vishnuvardhan Reddy**
+* **Bharath Kumar**
+* **Varshith**
+* **Masineni Kowshik**
 
 ---

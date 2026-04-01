@@ -1,31 +1,56 @@
 # 🏥 Multilingual Telehealth Voice-to-Text System
 
+---
+
 ## 📌 Overview
 
-This project provides **speech-to-text and translation for Indian languages** (Kannada, Hindi, Telugu, Tamil, Malayalam) for rural telehealth applications.
+This project provides a **complete speech-to-text and translation system for Indian languages** designed for rural telehealth applications.
 
-The system converts spoken audio into:
+It enables users to:
 
-* 📝 Native language transcription
-* 🌍 English translation
+* 🎤 Speak in native language
+* 📝 Get transcription
+* 🌍 Get English translation
+
+Supported Languages:
+
+* Kannada
+* Hindi
+* Telugu
+* Tamil
+* Malayalam
 
 ---
 
-## 🧠 Architecture
+## 🧠 System Architecture
 
 ```
 Android App → FastAPI Backend → Hugging Face Models → Output
 ```
 
-* 📱 Android App → Records audio
-* ⚙️ Backend → Processes audio
-* 🤖 Models → Perform ASR + Translation
+### Components:
+
+* 📱 **Android App**
+
+  * Records or uploads audio
+  * Sends request to backend
+
+* ⚙️ **Backend (FastAPI)**
+
+  * Handles API requests
+  * Processes audio
+  * Calls ML models
+
+* 🤖 **Models (Hugging Face)**
+
+  * ASR (Speech-to-Text)
+  * Translation (Indian → English)
 
 ---
 
 ## 🤖 Models (Hosted on Hugging Face)
 
-All models are publicly available on Hugging Face:
+All models are hosted and loaded dynamically:
 
 * 🔤 Translation Model (IndicTrans2)
   https://huggingface.co/vragipin/translation-model
@@ -36,13 +61,16 @@ All models are publicly available on Hugging Face:
 * 🧠 Whisper Kannada ONNX Model
   https://huggingface.co/vragipin/whisper-kannada-onnx-model
 
-> ⚠️ First run will download ~13GB of models automatically.
+> ⚠️ First run will automatically download ~13GB of models
+> After that → models are cached locally (no re-download)
 
 ---
 
-## 💻 Backend Setup (Local PC)
+# 💻 Backend Setup (Step-by-Step)
 
-### 1️⃣ Clone Repository
+---
+
+## 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/vragipin/Multi-Lingual-Voice-to-text-model-for-rural-users-of-Telehealth
@@ -51,7 +79,7 @@ cd telehealth_backend
 
 ---
 
-### 2️⃣ Create Virtual Environment
+## 2️⃣ Create Virtual Environment
 
 ```bash
 python -m venv venv
@@ -59,13 +87,15 @@ python -m venv venv
 
 Activate:
 
+### Windows:
+
 ```bash
-venv\scripts\activate   # Windows
+venv\scripts\activate
 ```
 
 ---
 
-### 3️⃣ Install Requirements
+## 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -73,7 +103,7 @@ pip install -r requirements.txt
 
 ---
 
-### 4️⃣ Run Backend
+## 4️⃣ Run Backend Server
 
 ```bash
 python main.py
@@ -81,77 +111,156 @@ python main.py
 
 ---
 
-## 🌐 Backend Access
+## 5️⃣ Backend Running Location
 
-### 🔹 Local API
+Once started, backend runs at:
 
 ```
 http://127.0.0.1:8000
 ```
 
-### 🔹 Swagger UI (API Testing)
+---
+
+## 6️⃣ Swagger UI (Testing API)
+
+Open in browser:
 
 ```
 http://127.0.0.1:8000/docs
 ```
 
-👉 You can test transcription directly from browser.
+👉 You can upload audio and test API directly
 
 ---
 
-## 🌍 Public Access using Ngrok
+# 🌍 Public Access using Ngrok
 
-Run:
+---
+
+## 7️⃣ Start Ngrok
 
 ```bash
 ngrok http 8000 --domain=sacramentally-humeral-shantelle.ngrok-free.dev
 ```
 
-👉 Your backend will be available at:
+---
+
+## 8️⃣ Public Backend URL
 
 ```
 https://sacramentally-humeral-shantelle.ngrok-free.dev
 ```
 
----
-
-## 📱 Android App Usage
-
-1. Install APK (provided in this repo)
-2. Open app
-3. Record or upload audio 🎤
-4. Select language
-5. Click **Transcribe**
-
-### ✅ Output:
-
-* Transcription (native language)
-* English translation
+👉 This is used by Android app
 
 ---
 
-## ⚠️ Important Notes
-
-* First run downloads models (~13GB)
-* Requires internet for first run only
-* After that → works offline
-* Backend runs on:
-
-  ```
-  http://127.0.0.1:8000
-  ```
+# 📱 Android App Usage
 
 ---
 
-## 🚀 Features
+## 🔽 Install APK
 
-* Multilingual ASR (Indic languages)
+Download from this repository:
+
+```
+app.apk
+```
+
+Install it on your Android device.
+
+---
+
+## 📲 Steps to Use
+
+1. Open the app
+
+2. Select language:
+
+   * Kannada / Hindi / Telugu / Tamil / Malayalam
+
+3. Select model:
+
+   * **Indic** → supports all languages
+   * **Whisper** → supports Kannada only
+
+4. Choose input method:
+
+   * 🎤 Record audio
+   * 📂 Upload audio file
+
+5. Click **Upload / Transcribe**
+
+---
+
+## ✅ Output
+
+The app will display:
+
+* 📝 Native language transcription
+* 🌍 English translation
+
+---
+
+# ⚠️ Important Notes
+
+* First run:
+
+  * Downloads ~13GB models
+  * Takes 10–20 minutes
+
+* After first run:
+
+  * Works offline
+  * Faster execution
+
+* Backend must be running before using app
+
+* Ngrok must be active for mobile access
+
+---
+
+# 🚀 Features
+
+* Multilingual speech recognition
 * Real-time translation
-* ONNX optimized Whisper model
 * Hugging Face model integration
+* ONNX optimized Whisper model
 * Android + Backend integration
+* Works offline after initial setup
 
 ---
 
+# 🧪 Testing Flow
+
+1. Run backend
+2. Start ngrok
+3. Open Swagger → test API
+4. Open Android app
+5. Record speech
+6. Get results
+
+---
+
+# 🏆 Future Improvements
+
+* Cloud deployment (Render / GCP)
+* Real-time streaming transcription
+* Model size optimization
+* UI enhancements
+
+---
+
+# 👨‍💻 Author
+
+**Vishnuvardhan Reddy**
+**Bharath Kumar**
+**Varshith**
+**Masineni Kowshik**
+Final Year Project – Multilingual Telehealth AI System
+
+Under the guidance of :-
+**Dr. Viswa Bharathy A. M 
+Assistant Professor**
 
 ---

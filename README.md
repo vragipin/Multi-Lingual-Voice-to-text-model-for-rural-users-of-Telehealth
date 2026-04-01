@@ -240,16 +240,6 @@ The app will display:
 5. Record speech
 6. Get results
 
----
-
-# 🏆 Future Improvements
-
-* Cloud deployment (Render / GCP)
-* Real-time streaming transcription
-* Model size optimization
-* UI enhancements
-
----
 
 # 👨‍💻 Author
 

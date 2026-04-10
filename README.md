@@ -1,18 +1,23 @@
-# 🏥 Multi-Lingual-Voice-to-text-model-for-rural-users-of-Telehealth
+# 🏥 Multi-Lingual Voice-to-Text System for Rural Telehealth
 
 ---
 
 ## 📌 Overview
 
-This project presents a **multilingual speech-to-text and translation system** designed specifically for rural telehealth applications.
+This project is a **Multilingual Speech-to-Text and Translation System** designed for rural telehealth applications.
 
-The system enables users to:
+---
 
-* 🎤 Speak in their native language
-* 📝 Receive accurate transcription
-* 🌍 Obtain English translation
+## 🎯 Key Features
 
-### 🌐 Supported Languages
+* 🎤 Speech → Text
+* 🌍 Translation to English
+* 📱 Android + Backend Integration
+* ⚡ ONNX Optimized Models
+
+---
+
+## 🌐 Supported Languages
 
 * Kannada
 * Hindi
@@ -24,45 +29,38 @@ The system enables users to:
 
 ## 🧠 System Architecture
 
-```id="pzt69x"
 Android App → FastAPI Backend → Hugging Face Models → Output
-```
-
-### 🔧 Components
-
-* 📱 **Android Application**
-
-  * Records or uploads audio
-  * Sends audio data to backend server
-
-* ⚙️ **Backend (FastAPI)**
-
-  * Handles API requests
-  * Processes audio input
-  * Integrates ML models for inference
-
-* 🤖 **Machine Learning Models (Hugging Face)**
-
-  * ASR (Speech-to-Text)
-  * Translation (Indian Languages → English)
 
 ---
 
-## 🤖 Models (Hosted on Hugging Face)
+## 🔧 Components
 
-The models are hosted on Hugging Face and loaded dynamically at runtime:
+### 📱 Android App
 
-* 🔤 **Translation Model (IndicTrans2)**
-  https://huggingface.co/vragipin/translation-model
+* Records or uploads audio
+* Sends data to backend
 
-* 🎤 **Transcription Model (IndicConformer)**
-  https://huggingface.co/vragipin/transcription-model
+### ⚙️ Backend (FastAPI)
 
-* 🧠 **Whisper Kannada ONNX Model**
-  https://huggingface.co/vragipin/whisper-kannada-onnx-model
+* Handles API requests
+* Runs ML models
+* Returns output
 
-> ⚠️ During the first execution, approximately **13GB of model data** will be downloaded automatically.
-> Afterward, models are cached locally and reused.
+### 🤖 Models
+
+* IndicConformer → Speech-to-text
+* IndicTrans2 → Translation
+* Whisper ONNX → Kannada
+
+---
+
+## 🤖 Models
+
+* Translation: https://huggingface.co/vragipin/translation-model
+* Transcription: https://huggingface.co/vragipin/transcription-model
+* Whisper Kannada: https://huggingface.co/vragipin/whisper-kannada-onnx-model
+
+⚠️ First run downloads ~13GB
 
 ---
 
@@ -70,58 +68,88 @@ The models are hosted on Hugging Face and loaded dynamically at runtime:
 
 ---
 
-## 1️⃣ Clone the Repository
+## 1️⃣ Install Python (IMPORTANT)
 
-```bash id="tweyf3"
+👉 Install **Python 3.10 ONLY**
+
+Download from:
+https://www.python.org/downloads/release/python-3100/
+
+✔ During installation:
+
+* ✅ Check **Add Python to PATH**
+
+---
+
+## 2️⃣ Clone Repository
+
+```
 git clone https://github.com/vragipin/Multi-Lingual-Voice-to-text-model-for-rural-users-of-Telehealth
-cd telehealth_backend
+cd Multi-Lingual-Voice-to-text-model-for-rural-users-of-Telehealth/telehealth_backend
 ```
 
 ---
 
-## 2️⃣ Create Virtual Environment
+## 3️⃣ Create Virtual Environment
 
-```bash id="nqruzy"
-python -m venv venv
 ```
-
-### Activate Environment (Windows)
-
-```bash id="21840i"
-venv\scripts\activate
+python -m venv venv310
 ```
 
 ---
 
-## 3️⃣ Install Dependencies
+## 4️⃣ Install Visual Studio C++ Build Tools
 
-```bash id="86is02"
+👉 Required to compile dependencies (VERY IMPORTANT)
+
+Install Visual C++ Build Tools (Try this first)
+
+Download from:
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+### During installation, select:
+
+* ✅ Desktop development with C++ workload
+
+### Under Individual components:
+
+* ✅ Windows 10/11 SDK
+* ✅ MSVC v143 - VS 2022 C++ x64/x86 build tools
+
+### Final Step:
+
+* 🔄 Restart your computer
+
+---
+
+## 5️⃣ Activate Environment & Install Requirements
+
+```
+venv310\Scripts\activate
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
 ---
 
-## 4️⃣ Run Backend Server
+## 6️⃣ Run Backend
 
-```bash id="yzq55z"
+```
 python main.py
 ```
 
----
+✔ Output:
 
-## 5️⃣ Backend Running Location
-
-```id="wz8sqi"
-http://127.0.0.1:8000
+```
+Uvicorn running on http://0.0.0.0:8000
 ```
 
 ---
 
-## 6️⃣ Swagger UI (API Testing)
+## 7️⃣ Access Backend
 
-```id="58hw0r"
-http://127.0.0.1:8000/docs
-```
+* http://127.0.0.1:8000
+* http://127.0.0.1:8000/docs
 
 ---
 
@@ -129,60 +157,114 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 7️⃣ Start Ngrok
+## 8️⃣ Install Ngrok using Winget
 
-```bash id="3b0xyw"
-ngrok http 8000 --domain=sacramentally-humeral-shantelle.ngrok-free.dev
+Open Command Prompt (Admin):
+
+```
+winget install ngrok.ngrok
 ```
 
 ---
 
-## 8️⃣ Public Backend URL
+## 9️⃣ Authenticate Ngrok
 
-```id="t790g9"
-https://sacramentally-humeral-shantelle.ngrok-free.dev
+Go to: https://dashboard.ngrok.com/get-started/your-authtoken
+
+Copy your token and run:
+
+```
+ngrok config add-authtoken YOUR_AUTHTOKEN
 ```
 
 ---
 
-# 📱 Android Application Usage
+## 🔟 Start Ngrok
+
+```
+ngrok http 8000
+```
+
+---
+
+## 🌐 Get Public URL
+
+Example output:
+
+```
+Forwarding: https://xxxxx.ngrok-free.dev -> http://localhost:8000
+```
+
+---
+
+## 1️⃣1️⃣ Use URL in Application
+
+👉 Copy this URL and paste in your Android app backend/base URL
+
+Example:
+
+```
+BASE_URL = https://xxxxx.ngrok-free.dev
+```
+
+---
+
+## 🔗 Test URLs
+
+* API → https://xxxxx.ngrok-free.dev
+* Swagger → https://xxxxx.ngrok-free.dev/docs
+
+---
+
+# 📱 Android App Usage
 
 ---
 
 ## 🔽 Install APK
 
-```id="yq5eed"
+```
 app.apk
 ```
 
 ---
 
-## 📲 Steps to Use
+## 📲 Steps
 
-1. Open the application
-2. Select preferred language
+1. Open app
+2. Select language
 3. Choose model:
 
-   * **Indic Model** → Supports all languages
-   * **Whisper Model** → Supports Kannada only
-4. Record or upload audio
+   * Indic → All languages
+   * Whisper → Kannada
+4. Record / Upload audio
 5. Click **Transcribe**
 
 ---
 
 ## ✅ Output
 
-* 📝 Native language transcription
-* 🌍 English translation
+* 📝 Transcription
+* 🌍 English Translation
+
+---
+
+# 🧪 Testing Workflow
+
+1. Run backend
+2. Wait for models loading
+3. Start ngrok
+4. Copy URL
+5. Paste in Android app
+6. Test
 
 ---
 
 # ⚠️ Important Notes
 
-* First run downloads ~13GB models
-* Takes 10–20 minutes
+* First run takes 10–20 minutes
+* Models (~13GB) download once
 * Works offline after first run
-* Backend + ngrok must be running
+* Keep backend + ngrok running
 
 ---
 
@@ -190,28 +272,18 @@ app.apk
 
 * Multilingual speech recognition
 * Real-time translation
-* Hugging Face integration
-* ONNX optimized inference
-* Android + Backend integration
-
----
-
-# 🧪 Testing Workflow
-
-1. Run backend
-2. Start ngrok
-3. Open Swagger UI
-4. Use Android app
-5. Get results
+* FastAPI backend
+* Android integration
+* ONNX acceleration
 
 ---
 
 # 👨‍💻 Authors
 
-* **Dr. Viswa Bharathy A. M (Project Guide)**
-* **Vishnuvardhan Reddy**
-* **Bharath Kumar**
-* **Varshith**
-* **Masineni Kowshik**
+* Dr. Viswa Bharathy A. M
+* Vishnuvardhan Reddy
+* Bharath Kumar
+* Varshith
+* Masineni Kowshik
 
 ---
